@@ -356,11 +356,7 @@ Once the repository is public, consider adding:
 
 This project is released for educational and authorized security research purposes.
 
-Choose a license before public release, such as:
-
 - MIT
-- Apache-2.0
-- GPL-3.0
 
 ---
 
