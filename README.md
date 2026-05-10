@@ -13,7 +13,7 @@
 <img src="https://img.shields.io/badge/Rust-1.70%2B-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust 1.70+" />
 <img src="https://img.shields.io/badge/Runtime-Tokio-111827?style=for-the-badge&logo=rust&logoColor=white" alt="Tokio Runtime" />
 <img src="https://img.shields.io/badge/HTTP-Reqwest-1F2937?style=for-the-badge&logo=rust&logoColor=white" alt="Reqwest" />
-<img src="https://img.shields.io/badge/Security-Authorized%20Use-7F1D1D?style=for-the-badge" alt="Authorized Use Only" />
+<img src="https://img.shields.io/badge/Security-Authorized%20Use%20Only-7F1D1D?style=for-the-badge" alt="Authorized Use Only" />
 
 <br />
 <br />
@@ -28,10 +28,9 @@ Engineered for controlled security assessments where throughput, memory safety, 
 
 ## Overview
 
-**Crabkit** is a Rust-based offensive security framework focused on high-speed reconnaissance and controlled endpoint discovery.  
-It is designed for environments where predictable performance, memory safety, and precise concurrency control are critical.
+**Crabkit** is a Rust-based offensive security framework focused on high-speed reconnaissance and controlled endpoint discovery.
 
-Unlike traditional tools that rely on heavier runtime models, Crabkit uses an asynchronous task-based execution model to maximize network throughput while keeping system resource usage predictable.
+It is designed for environments where predictable performance, memory safety, and precise concurrency control are critical. Crabkit uses an asynchronous task-based execution model to maximize network throughput while keeping system resource usage predictable and auditable.
 
 The first MVP focuses on:
 
@@ -40,6 +39,7 @@ The first MVP focuses on:
 - High-concurrency HTTP/S probing.
 - Response filtering by status code and body length.
 - Large-scale wordlist streaming with low memory overhead.
+- CLI-first execution for fast operational workflows.
 
 > Crabkit is intended strictly for educational research, internal security testing, and authorized penetration testing.
 
@@ -143,22 +143,30 @@ git clone https://github.com/tu-usuario/crabkit.git
 cd crabkit
 ```
 
-### Build Development Version
-
-```bash
-cargo build
-```
-
 ### Build Optimized Release
 
 ```bash
 cargo build --release
 ```
 
-The optimized binary will be generated at:
+### Install as a Global CLI
+
+To use Crabkit directly as a terminal command:
 
 ```bash
-./target/release/crabkit
+cargo install --path .
+```
+
+After installation, verify that the CLI is available:
+
+```bash
+crabkit --help
+```
+
+If the command is not found, make sure Cargo's binary directory is available in your `PATH`:
+
+```bash
+$HOME/.cargo/bin
 ```
 
 ---
@@ -168,7 +176,7 @@ The optimized binary will be generated at:
 Basic execution:
 
 ```bash
-./crabkit \
+crabkit \
   --target <URL> \
   --wordlist <PATH> \
   --concurrency <INT>
@@ -177,7 +185,7 @@ Basic execution:
 Example using a controlled internal target:
 
 ```bash
-./crabkit \
+crabkit \
   --target https://api.internal.example \
   --wordlist ./wordlists/endpoints.txt \
   --concurrency 100
@@ -186,7 +194,7 @@ Example using a controlled internal target:
 ### Recommended Operational Flags
 
 ```bash
-./crabkit \
+crabkit \
   --target https://api.internal.example \
   --wordlist ./wordlists/endpoints.txt \
   --concurrency 80 \
@@ -340,23 +348,9 @@ cargo test
 
 ---
 
-## Suggested Repository Badges
-
-Once the repository is public, consider adding:
-
-```markdown
-![Build](https://img.shields.io/github/actions/workflow/status/tu-usuario/crabkit/rust.yml?style=for-the-badge)
-![License](https://img.shields.io/github/license/tu-usuario/crabkit?style=for-the-badge)
-![Stars](https://img.shields.io/github/stars/tu-usuario/crabkit?style=for-the-badge)
-```
-
----
-
 ## License
 
-This project is released for educational and authorized security research purposes.
-
-- MIT
+This project is licensed under the MIT License.
 
 ---
 
