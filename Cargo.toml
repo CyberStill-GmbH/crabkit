@@ -2,5 +2,32 @@
 name = "crabkit"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
+description = "High-performance Rust framework for authorized reconnaissance, endpoint discovery, and tactical fuzzing."
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/CyberStill-GmbH/crabkit"
+keywords = ["rust", "security", "reconnaissance", "fuzzing", "cli"]
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "crabkit"
+path = "src/main.rs"
 
 [dependencies]
+clap = { version = "4", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.13", features = ["json", "rustls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+thiserror = "2"
+url = "2"
+colored = "3"
+indicatif = "0.18"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+opt-level = 3
