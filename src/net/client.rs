@@ -48,17 +48,19 @@ impl HttpClientScanner {
     pub async fn extract_results(&self, response: reqwest::Response) -> Result<(u16, usize, String), Box<dyn std::error::Error>> {
         let status_code = response.status().as_u16();
         let content_length = response.content_length().unwrap_or(0) as usize;
+        let latency = response.elapsed().as_millis();
+
         let body = response.text().await?;
 
-        Ok((status_code, content_length, body))
+        Ok((status_code, content_length, body, latency))
     }
 
     // Orchestrate the request and response processing
     pub async fn scan_path(&self, target: &str, path: &str) -> Result<(), Box<dyn std::error::Error>> {
         let url = self.build_url(target, path)?;
         let response = self.get_data(&url).await?;
-        let (status_code, content_length, body) = self.extract_results(response).await?;
-        println!("{} - Status: {}, Length: {}", url, status_code, content_length);
+        let (status_code, content_length, body, latency) = self.extract_results(response).await?;
+        println!("{} - Status: {}, Length: {}, Latency: {} ms", url, status_code, content_length, latency);
 
         Ok(())
     }
