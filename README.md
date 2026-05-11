@@ -72,17 +72,31 @@ Crabkit follows a modular architecture so each tactical capability can evolve in
 
 ```text
 crabkit/
-├── core/
-│   └── engine.rs        # Request orchestration and concurrency control
-├── net/
-│   └── client.rs        # HTTP/S transport abstraction
-├── io/
-│   └── streamer.rs      # High-performance wordlist reader
-├── logic/
-│   └── mutator.rs       # Payload generation and mutation logic
-├── output/
-│   └── reporter.rs      # Structured output and result formatting
-└── main.rs              # CLI entrypoint
+├── Cargo.toml              # Project configuration, dependencies and binary metadata
+├── README.md               # Project documentation
+├── LICENSE                 # MIT license
+└── src/
+    ├── main.rs             # CLI entrypoint and application bootstrap
+    │
+    ├── core/
+    │   ├── mod.rs          # Exposes the core module
+    │   └── engine.rs       # Request orchestration and concurrency control
+    │
+    ├── net/
+    │   ├── mod.rs          # Exposes the network module
+    │   └── client.rs       # HTTP/S transport abstraction
+    │
+    ├── io/
+    │   ├── mod.rs          # Exposes the IO module
+    │   └── streamer.rs     # High-performance wordlist reader
+    │
+    ├── logic/
+    │   ├── mod.rs          # Exposes the logic module
+    │   └── mutator.rs      # Payload generation and mutation logic
+    │
+    └── output/
+        ├── mod.rs          # Exposes the output module
+        └── reporter.rs     # Structured output and result formatting
 ```
 
 ### Module Responsibilities
