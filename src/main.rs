@@ -1,6 +1,10 @@
 /*
 Parser the command line in the CLI input as
-the firts important task in main function.
+the first important task in main function.
+
+NEXT SUNDAY: Probaré si funciona el cliente para una solicitud
+Ando cansado ya son las 3a.m y de leer pura docu de Rust asu...
+haré eso e implementar Reporter para visualizar las salidas en CLI
 */
 
 // import the function modules
